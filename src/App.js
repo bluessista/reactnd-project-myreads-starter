@@ -26,7 +26,7 @@ class BooksApp extends Component {
  
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      books: this.setState({ books })
+      this.setState({ books })
     })
   }
   // move books between shelfs
@@ -39,7 +39,13 @@ class BooksApp extends Component {
   render() {
     return (
       <div className="app">
-        <Route path="/search" render={() => (<SearchBooks />)} />
+        <Route path="/search" render={() => (
+          <SearchBooks 
+            moveBookToShelf={this.moveBookToShelf}
+            books={this.state.books}
+            />)}
+            
+          />
         <Route path="/" exact render={() => (
           <ListBooks 
             shelfs={this.state.shelfs} 

@@ -5,7 +5,6 @@ import Shelf from './Shelf';
 class ListBooks extends Component {
     render() {
         const { shelfs, books } = this.props
-
         return (
             <div className="list-books">
                 <div className="list-books-title">
@@ -14,7 +13,11 @@ class ListBooks extends Component {
                 <div className="list-books-content">
                 {shelfs.map(shelf => 
                     <div key={shelf.shelf}>
-                        <Shelf shelf={shelf} books={books}/>
+                        <Shelf 
+                            shelf={shelf} 
+                            books={books}
+                            moveBookToShelf={this.props.moveBookToShelf}
+                        />
                     </div>
                 )}
                 

@@ -2,6 +2,7 @@ import React from 'react'
 
 function Book(props) {
     const { book } = props
+    let thumbnailFallback = book.imageLinks ? book.imageLinks.thumbnail : ''
     return (
         <div className="book">
             <div className="book-top">
@@ -10,11 +11,11 @@ function Book(props) {
                     style={{
                     width: 128,
                     height: 193,
-                    backgroundImage: `url("${book.imageLinks.thumbnail}")`
+                    backgroundImage: `url(${thumbnailFallback})`
                 }}></div>
                 <div className="book-shelf-changer">
                     <select onChange={(event) => props.moveBookToShelf(
-                        book, event.target.value)} value={book.shelf}>
+                        book, event.target.value)} value={props.currentShelf}>
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
